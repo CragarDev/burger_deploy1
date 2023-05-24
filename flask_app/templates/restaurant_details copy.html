@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" />
+    <title>Restaurant Details</title>
+  </head>
+
+  <body>
+    <div class="d-flex justify-content-around flex-wrap p-5">
+      <div class="card col-3 bg-dark text-light">
+        <div class="card-body">
+          <h2 class="card-title bg-warning text-white text-center py-2">{{ restaurant_details.name }}</h2>
+          <div class="card-footer">
+            <p class="card-subtitle">Created on: {{ restaurant_details.created_at.strftime("%B %d, %Y at %H:%M:%S") }}</p>
+            <p class="card-subtitle">Last Update: {{ restaurant_details.updated_at.strftime("%B %d, %Y at %H:%M:%S") }}</p>
+          </div>
+          {% for burger in restaurant_details.burgers %}
+          <div class="container bg-info text-light">
+            {% if burger.name == None %}
+            <h4 class="card-text"><span class="h3 text-warning">No Burgers Available</span></h4>
+            {% else %}
+            <h4 class="card-text">Burger Name: <span class="h3 text-warning">{{burger.name}}</span></h4>
+            <p class="card-text">Bun Type: {{burger.bun}}</p>
+            <p class="card-text">Meat Type: {{burger.meat}}</p>
+            <h4 class="card-subtitle">Calories: {{burger.calories}}</h4>
+            {% endif %}
+          </div>
+          <p class="w-100"></p>
+          {% endfor %}
+        </div>
+        <div class="container">
+          <!-- <a class=" btn btn-info btn-warning text-black" href="/edit_page/{{ restaurant.id }}">Edit</a> -->
+          <!-- <a class=" btn btn-info btn-danger text-white" href="/delete/{{ restaurant.id }}">Delete</a> -->
+          <a class="float-end btn btn-warning text-black" href="/restaurants">Back</a>
+          <a class="float-end btn btn-primary text-white" href="/">Home</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

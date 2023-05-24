@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" />
+    <title>Burger Details</title>
+  </head>
+
+  <body>
+    <div class="d-flex justify-content-around flex-wrap p-5 w-100">
+      <div class="card col-3 bg-dark text-light w-100">
+        <div class="card-body w-100">
+          <h2 class="card-title bg-warning text-white text-center py-2">{{ burger_details.name }}</h2>
+          <div class="card-footer">
+            <p class="card-subtitle">Created on: {{ burger_details.created_at.strftime("%B %d, %Y at %H:%M:%S") }}</p>
+            <p class="card-subtitle">Last Update: {{ burger_details.updated_at.strftime("%B %d, %Y at %H:%M:%S") }}</p>
+          </div>
+        </div>
+        <div class="container">
+          <!-- edit and delete in copy -->
+
+          <a class="float-end btn btn-warning text-black" href="/burgers">Back</a>
+          <a class="float-end btn btn-primary text-white" href="/">Home</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

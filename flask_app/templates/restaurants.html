@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" />
+    <title>Burger Bars Restaurants</title>
+  </head>
+
+  <body>
+    <!--  Basically a nav -->
+    <div class="container">
+      <h1 class="text-center">Burger Bars Restaurants</h1>
+      <div class="container text-center">
+        <a href="/" class="btn btn-white text-primary btn-outline-primary">Home</a>
+        <a href="/burgers" class="btn btn-success btn-outline-primary">Burgers</a>
+      </div>
+
+      <p class="w-100"></p>
+
+      <div class="container text-center">
+        <a href="/create_restaurant" class="btn btn-warning text-dark btn-outline-primary">Create Restaurant</a>
+      </div>
+    </div>
+
+    <!-- list of restaurants -->
+    <div class="d-flex justify-content-around flex-wrap p-5">
+      {% for restaurant in restaurants %}
+      <div class="card col-3 bg-dark text-light">
+        <div class="card-body">
+          <h2 class="card-title text-primary"><a href="/restaurant_details/{{restaurant.id}}">{{ restaurant.name }}</a></h2>
+        </div>
+        <div class="card-footer">
+          <p class="card-subtitle">Created on: {{ restaurant.created_at.strftime("%B %d, %Y at %r") }}</p>
+          <p class="card-subtitle">Last Update: {{ restaurant.updated_at.strftime("%B %d, %Y at %r") }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
